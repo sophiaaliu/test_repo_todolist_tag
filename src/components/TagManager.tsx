@@ -7,7 +7,18 @@ import { X } from "lucide-react";
 interface Tag {
   id: string;
   name: string;
+  color?: string;
 }
+
+const TAG_COLORS = [
+  "bg-red-100 text-red-800 border-red-200",
+  "bg-blue-100 text-blue-800 border-blue-200",
+  "bg-green-100 text-green-800 border-green-200",
+  "bg-yellow-100 text-yellow-800 border-yellow-200",
+  "bg-purple-100 text-purple-800 border-purple-200",
+  "bg-pink-100 text-pink-800 border-pink-200",
+  "bg-indigo-100 text-indigo-800 border-indigo-200",
+];
 
 interface TagManagerProps {
   tags?: Tag[];
@@ -17,9 +28,9 @@ interface TagManagerProps {
 
 const TagManager = ({
   tags = [
-    { id: "1", name: "important" },
-    { id: "2", name: "work" },
-    { id: "3", name: "personal" },
+    { id: "1", name: "important", color: TAG_COLORS[0] },
+    { id: "2", name: "work", color: TAG_COLORS[1] },
+    { id: "3", name: "personal", color: TAG_COLORS[2] },
   ],
   onAddTag = () => {},
   onRemoveTag = () => {},
@@ -46,7 +57,7 @@ const TagManager = ({
           <Badge
             key={tag.id}
             variant="secondary"
-            className="flex items-center gap-1 px-2 py-1"
+            className={`flex items-center gap-1 px-2 py-1 border ${tag.color || "bg-gray-100 text-gray-800 border-gray-200"}`}
           >
             {tag.name}
             <button

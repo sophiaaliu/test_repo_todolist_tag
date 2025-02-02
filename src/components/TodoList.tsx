@@ -9,13 +9,25 @@ const TodoList = () => {
       id: "1",
       text: "Build a todo list app",
       completed: false,
-      tags: [{ id: "1", name: "work" }],
+      tags: [
+        {
+          id: "1",
+          name: "work",
+          color: "bg-blue-100 text-blue-800 border-blue-200",
+        },
+      ],
     },
     {
       id: "2",
       text: "Add tag management",
       completed: true,
-      tags: [{ id: "2", name: "important" }],
+      tags: [
+        {
+          id: "2",
+          name: "important",
+          color: "bg-red-100 text-red-800 border-red-200",
+        },
+      ],
     },
   ]);
   const [newTodo, setNewTodo] = useState("");
@@ -53,7 +65,15 @@ const TodoList = () => {
         todo.id === todoId
           ? {
               ...todo,
-              tags: [...todo.tags, { id: Date.now().toString(), name: tag }],
+              tags: [
+                ...todo.tags,
+                {
+                  id: Date.now().toString(),
+                  name: tag,
+                  color:
+                    TAG_COLORS[Math.floor(Math.random() * TAG_COLORS.length)],
+                },
+              ],
             }
           : todo,
       ),
